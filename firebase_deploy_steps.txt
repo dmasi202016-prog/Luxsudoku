@@ -1,0 +1,56 @@
+=== Firebase 배포 단계별 가이드 ===
+
+1. Firebase 로그인
+-------------------
+cd c:\Cusor_game\sudoku_app
+firebase login
+
+→ 브라우저가 열리면 Google 계정으로 로그인
+
+
+2. Firebase 프로젝트 초기화
+-------------------
+firebase init hosting
+
+다음 질문에 답변:
+- "What do you want to use as your public directory?" → build/web
+- "Configure as a single-page app?" → Yes
+- "Set up automatic builds and deploys with GitHub?" → No
+- "File build/web/index.html already exists. Overwrite?" → No
+
+
+3. 프로덕션 빌드
+-------------------
+flutter clean
+flutter build web --release
+
+
+4. Firebase 배포
+-------------------
+firebase deploy --only hosting
+
+→ 배포 완료 후 URL이 표시됩니다 (예: https://your-project.web.app)
+
+
+5. 브라우저에서 확인
+-------------------
+배포된 URL을 브라우저에서 열어 확인
+
+
+=== 문제 해결 ===
+
+Firebase 프로젝트가 없는 경우:
+1. https://console.firebase.google.com 접속
+2. "프로젝트 추가" 클릭
+3. 프로젝트 이름 입력 (예: sudoku-game)
+4. Google Analytics는 선택사항
+5. 프로젝트 생성 완료 후 위 단계 2부터 진행
+
+
+Firebase CLI 명령어 요약:
+- firebase login : Firebase 로그인
+- firebase projects:list : 프로젝트 목록 보기
+- firebase use <project-id> : 프로젝트 선택
+- firebase deploy : 전체 배포
+- firebase deploy --only hosting : 호스팅만 배포
+- firebase hosting:channel:deploy preview : 미리보기 배포
